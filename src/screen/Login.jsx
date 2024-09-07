@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 
 const LoginPage = () => {
-    const [username, setUsername] = useState('');
+    const [email, setemail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (e) => {
+    const handelLogin = (e) => {
         e.preventDefault();
         // Handle login logic here
-        console.log('Username:', username);
+
+        console.log('email:', email);
         console.log('Password:', password);
     };
 
@@ -15,18 +16,18 @@ const LoginPage = () => {
         <div className="flex items-center justify-center min-h-screen bg-gray-200">
             <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-sm">
                 <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handelLogin}>
                     <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-medium mb-2" htmlFor="username">
-                            Username
+                        <label className="block text-gray-700 text-sm font-medium mb-2" htmlFor="Email">
+                            Email
                         </label>
                         <input
                             type="text"
-                            id="username"
-                            value={username}
+                            id="email-id"
+                            value={email}
                             onChange={(e) => setUsername(e.target.value)}
                             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="Enter your username"
+                            placeholder="Enter your Email"
                             required
                         />
                     </div>
@@ -50,6 +51,11 @@ const LoginPage = () => {
                     >
                         Login
                     </button>
+                    <div className=' mt-4 text-indigo-900 hover:text-indigo-700'>
+                        <a href="/signup">
+                            Don't have an Account Signup ?
+                        </a>
+                    </div>
                 </form>
             </div>
         </div>

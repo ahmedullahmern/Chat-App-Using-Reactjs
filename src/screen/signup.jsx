@@ -1,94 +1,72 @@
-// // src/SignUpPage.js
+import React, { useState } from 'react';
 
-// import React, { useState } from 'react';
-// import styled from 'styled-components';
-// import { Link } from 'react-router-dom';
+const SignupPage = () => {
+    const [email, setemail] = useState('');
+    const [password, setPassword] = useState('');
 
-// const Container = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   height: 100vh;
-//   background-color: #f4f4f4;
-// `;
+    const handelSignup = (e) => {
+        e.preventDefault();
+        // Handle login logic here
 
-// const Form = styled.form`
-//   background: #fff;
-//   padding: 2rem;
-//   border-radius: 8px;
-//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-//   width: 100%;
-//   max-width: 400px;
-// `;
+        console.log('email:', email);
+        console.log('Password:', password);
+    };
 
-// const Title = styled.h2`
-//   margin-bottom: 1rem;
-// `;
+    return (
+        <div className="flex items-center justify-center min-h-screen bg-gray-200">
+            <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-sm">
+                <h2 className="text-2xl font-bold mb-6 text-center">Signup</h2>
+                <form onSubmit={handelSignup}>
+                    <div className="mb-4">
+                        <label className="block text-gray-700 text-sm font-medium mb-2" htmlFor="Email">
+                            Email
+                        </label>
+                        <input
+                            type="text"
+                            id="email-id"
+                            value={email}
+                            onChange={(e) => setUsername(e.target.value)}
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Enter your Email"
+                            required
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label className="block text-gray-700 text-sm font-medium mb-2" htmlFor="Email">
+                            Full Name
+                        </label>
+                        <input
+                            type="text"
+                            value={email}
+                            onChange={(e) => setUsername(e.target.value)}
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Enter your full Name"
+                            required
+                        />
+                    </div>
+                    <div className="mb-6">
+                        <label className="block text-gray-700 text-sm font-medium mb-2" htmlFor="password">
+                            Password
+                        </label>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Enter your password"
+                            required
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                        className="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                        Signup
+                    </button>
+                </form>
+            </div>
+        </div>
+    );
+};
 
-// const Input = styled.input`
-//   width: 100%;
-//   padding: 0.8rem;
-//   margin-bottom: 1rem;
-//   border: 1px solid #ddd;
-//   border-radius: 4px;
-// `;
-
-// const Button = styled.button`
-//   width: 100%;
-//   padding: 0.8rem;
-//   background-color: #007bff;
-//   color: #fff;
-//   border: none;
-//   border-radius: 4px;
-//   font-size: 1rem;
-//   cursor: pointer;
-
-//   &:hover {
-//     background-color: #0056b3;
-//   }
-// `;
-
-// const LinkContainer = styled.div`
-//   margin-top: 1rem;
-//   text-align: center;
-// `;
-
-// const SignUpPage = () => {
-//     const [email, setEmail] = useState('');
-//     const [password, setPassword] = useState('');
-
-//     const handleSubmit = (e) => {
-//         e.preventDefault();
-//         // Handle sign-up logic here
-//         console.log('Email:', email);
-//         console.log('Password:', password);
-//     };
-
-//     return (
-//         <Container>
-//             <Form onSubmit={handleSubmit}>
-//                 <Title>Sign Up</Title>
-//                 <Input
-//                     type="email"
-//                     placeholder="Email"
-//                     value={email}
-//                     onChange={(e) => setEmail(e.target.value)}
-//                     required
-//                 />
-//                 <Input
-//                     type="password"
-//                     placeholder="Password"
-//                     value={password}
-//                     onChange={(e) => setPassword(e.target.value)}
-//                     required
-//                 />
-//                 <Button type="submit">Sign Up</Button>
-//                 <LinkContainer>
-//                     <p>Already have an account? <Link to="/login">Login</Link></p>
-//                 </LinkContainer>
-//             </Form>
-//         </Container>
-//     );
-// };
-
-// export default SignUpPage;
+export default SignupPage;
