@@ -14,7 +14,7 @@ const LoginPage = () => {
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-200">
-            <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-sm">
+            <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-sm scale-125">
                 <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
                 <form onSubmit={handelLogin}>
                     <div className="mb-4">
@@ -25,7 +25,7 @@ const LoginPage = () => {
                             type="text"
                             id="email-id"
                             value={email}
-                            onChange={(e) => setUsername(e.target.value)}
+                            onChange={(e) => setemail(e.target.value)}
                             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="Enter your Email"
                             required
@@ -51,7 +51,7 @@ const LoginPage = () => {
                     >
                         Login
                     </button>
-                    <div className=' mt-4 text-indigo-900 hover:text-indigo-700'>
+                    <div className=' mt-4 text-blue-700 hover:text-indigo-700'>
                         <a href="/signup">
                             Don't have an Account Signup ?
                         </a>

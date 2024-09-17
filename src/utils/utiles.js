@@ -2,8 +2,6 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import {
     getAuth,
-    createUserWithEmailAndPassword,
-    signOut,
 } from "firebase/auth";
 
 const firebaseConfig = {
