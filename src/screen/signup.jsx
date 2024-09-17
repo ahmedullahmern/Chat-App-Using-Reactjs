@@ -3,13 +3,15 @@ import { createUserWithEmailAndPassword, } from 'firebase/auth';
 import { auth } from '../utils/utiles.js'
 // import { response } from 'har-validator';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const SignupPage = () => {
+    const navigate = useNavigate()
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isLoading, setisloding] = useState(false)
+    const [isLoading, setisloding] = useState(true)
 
     const handelSignup = (e) => {
         e.preventDefault();
@@ -28,8 +30,11 @@ const SignupPage = () => {
                 const user = userCredential.user;
                 setisloding(false)
                 // ...
+                navigate('/home')
             })
             .catch((error) => {
+                console.log(error);
+
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 Swal.fire({
@@ -41,6 +46,15 @@ const SignupPage = () => {
                 // ..
             });
 
+        if (isLoading) {
+            return (
+                <div className="flex items-center justify-center min-h-screen bg-gray-200 scale-125">
+                    <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-sm">
+                        <img className='h-24 w-24' src="https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47zm5hmv2txtirowv1gn851wmgaur2ydhfk2vylin6&ep=v1_gifs_related&rid=giphy.gif&ct=g" alt="" />
+                    </div>
+                </div>
+            )
+        }
         console.log('name:', name);
         console.log('email:', email);
         console.log('Password:', password);
@@ -50,7 +64,7 @@ const SignupPage = () => {
         <div className="flex items-center justify-center min-h-screen bg-gray-200 scale-125">
             <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-sm">
                 <h2 className="text-2xl font-bold mb-6 text-center">Signup</h2>
-                <form onSubmit={handelSignup}>
+                <form>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-medium mb-2" htmlFor="Email">
                             Full Name
@@ -92,6 +106,7 @@ const SignupPage = () => {
                         />
                     </div>
                     <button
+                        onClick={handelSignup}
                         type="submit"
                         className="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
