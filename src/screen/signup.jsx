@@ -46,15 +46,7 @@ const SignupPage = () => {
                 // ..
             });
 
-        if (isLoading) {
-            return (
-                <div className="flex items-center justify-center min-h-screen bg-gray-200 scale-125">
-                    <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-sm">
-                        <img className='h-24 w-24' src="https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47zm5hmv2txtirowv1gn851wmgaur2ydhfk2vylin6&ep=v1_gifs_related&rid=giphy.gif&ct=g" alt="" />
-                    </div>
-                </div>
-            )
-        }
+
         console.log('name:', name);
         console.log('email:', email);
         console.log('Password:', password);
@@ -105,13 +97,19 @@ const SignupPage = () => {
                             required
                         />
                     </div>
-                    <button
-                        onClick={handelSignup}
-                        type="submit"
-                        className="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                        Signup
-                    </button>
+                    {isLoading ?
+                        <button
+                            className=" bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        >
+                            <img className=' items-center justify-center h-16 w-38' src="https://technometrics.net/wp-content/uploads/2020/11/loading-icon-animated-gif-19-1.gif" alt="" />
+                        </button>
+                        : <button
+                            onClick={handelSignup}
+                            type="submit"
+                            className="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        >
+                            Signup
+                        </button>}
                 </form>
             </div>
         </div>
