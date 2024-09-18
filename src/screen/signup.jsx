@@ -11,19 +11,20 @@ const SignupPage = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isLoading, setisloding] = useState(true)
+    const [isLoading, setisloding] = useState(false)
 
     const handelSignup = (e) => {
+        setisloding(true)
         e.preventDefault();
 
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                setisloding(true)
                 const userUid = userCredential.user.uid
+                localStorage.setItem("userId",userCredential.user.uid)
                 console.log("userId==>", userUid);
 
                 Swal.fire({
-                    title: 'Signup Competed!',
+                    title: 'Signup Completed!',
                     text: 'Do you want to continue',
                     icon: 'success',
                 })
@@ -98,10 +99,8 @@ const SignupPage = () => {
                         />
                     </div>
                     {isLoading ?
-                        <button
-                            className=" bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        >
-                            <img className=' items-center justify-center h-16 w-38' src="https://technometrics.net/wp-content/uploads/2020/11/loading-icon-animated-gif-19-1.gif" alt="" />
+                        <button className="flex items-center justify-center w-full bg-blue-500 text-white p-3 rounded-lg  focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <img className='h-10 w-16' src="https://i.pinimg.com/originals/c7/5a/35/c75a354e770fcf089a932f09c0f8034c.gif" alt="Loading..." />
                         </button>
                         : <button
                             onClick={handelSignup}
