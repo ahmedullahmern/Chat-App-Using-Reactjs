@@ -1,9 +1,10 @@
 import Swal from 'sweetalert2'
 import { createUserWithEmailAndPassword, } from 'firebase/auth';
-import { auth } from '../utils/utiles.js'
+import { auth, db } from '../utils/utiles.js'
 // import { response } from 'har-validator';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { doc, setDoc, } from 'firebase/firestore';
 
 const SignupPage = () => {
     const navigate = useNavigate()
@@ -18,11 +19,12 @@ const SignupPage = () => {
         e.preventDefault();
 
         createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                const userUid = userCredential.user.uid
+            .then(async (userCredential) => {
+                const uid = userCredential.user.uid
+                const userData = {name , email ,uid}
                 localStorage.setItem("userId",userCredential.user.uid)
-                console.log("userId==>", userUid);
-
+                await setDoc(doc(db,"users",uid),userData)
+                // await setDoc(doc(db, 'users', uid), userData)
                 Swal.fire({
                     title: 'Signup Completed!',
                     text: 'Do you want to continue',

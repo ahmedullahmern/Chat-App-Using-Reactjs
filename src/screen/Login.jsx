@@ -84,7 +84,7 @@ const LoginPage = () => {
                             required
                         />
                     </div>
-                    {isLoading ?
+                    { isLoading ?
                         <button className="flex items-center justify-center w-full bg-blue-500 text-white p-3 rounded-lg  focus:outline-none focus:ring-2 focus:ring-blue-500">
                             <img className='h-10 w-16' src="https://i.pinimg.com/originals/c7/5a/35/c75a354e770fcf089a932f09c0f8034c.gif" alt="Loading..." />
                         </button> :
