@@ -8,6 +8,7 @@ import NotFound from './screen/NotFound'
 import Loading from './screen/Loading'
 import LoginPage from './screen/Login'
 import SignupPage from './screen/signup'
+import Chat from './screen/chat'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -19,6 +20,10 @@ function App() {
     {
       path: "/Home",
       element: <Home />,
+    },
+    {
+      path: "/chat",
+      element: <Chat />,
     },
     {
       path: "/Login",

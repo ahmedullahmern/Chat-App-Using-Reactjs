@@ -2,11 +2,13 @@ import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../utils/utiles";
 import { data } from "autoprefixer";
+import { useNavigate } from "react-router-dom";
 
 
 
 
 function Home() {
+  const navigate = useNavigate();
   const [user, setUser] = useState([])
   console.log("user", user);
 
@@ -35,7 +37,7 @@ function Home() {
             <span className="ml-3 text-xl text-white">React-Chat</span>
           </a>
           <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-            <a className="mr-5 hover:text-gray-900"> First Link </a>
+            <a onClick={() => navigate("/signup")} className="mr-5 hover:text-gray-900"> Signup</a>
             <a className="mr-5 hover:text-gray-900">Second Link</a>
             <a className="mr-5 hover:text-gray-900">Third Link</a>
             <a className="mr-5 hover:text-gray-900">Fourth Link</a>
@@ -58,9 +60,9 @@ function Home() {
       </header>
 
       <div className="bg-gray-100 min-h-screen flex items-center justify-center p-4">
-        <div  className=" bg-white rounded-lg shadow-lg w-full max-w-2xl mb-60"> 
+        <div className=" bg-white rounded-lg shadow-lg w-full max-w-2xl mb-60">
           {user.map(data => (
-            <div key={data.id} className="flex items-center justify-between p-4 border-b last:border-b-0">
+            <div onClick={() => navigate("/chat",{state:{data}})} key={data.uid} className="flex items-center justify-between p-4 border-b last:border-b-0">
               {/* Avatar */}
               <img
                 src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmRQV982vDFH9Mgp4-V4Ffw9x-u0HxxSCeNQ&s"}
