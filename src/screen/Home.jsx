@@ -20,6 +20,7 @@ function Home() {
     const list = []
     const dbsnap = await getDocs(collection(db, "users"))
     dbsnap.forEach((item) => {
+      // console.log("data", item); // Check this output
       list.push(item.data())
     })
     setUser(list)
@@ -37,10 +38,10 @@ function Home() {
             <span className="ml-3 text-xl text-white">React-Chat</span>
           </a>
           <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-            <a onClick={() => navigate("/signup")} className="mr-5 hover:text-gray-900"> Signup</a>
-            <a className="mr-5 hover:text-gray-900">Second Link</a>
-            <a className="mr-5 hover:text-gray-900">Third Link</a>
-            <a className="mr-5 hover:text-gray-900">Fourth Link</a>
+            <div onClick={() => navigate("/signup")} className="mr-5 cursor-pointer hover:text-gray-900"> Signup</div>
+            <div className="mr-5 cursor-pointer hover:text-gray-900">Second Link</div>
+            <div className="mr-5 cursor-pointer hover:text-gray-900">Third Link</div>
+            <div className="mr-5 cursor-pointer hover:text-gray-900">Fourth Link</div>
           </nav>
           <button className="inline-flex items-center text-black bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
             Button
@@ -62,7 +63,7 @@ function Home() {
       <div className="bg-gray-100 min-h-screen flex items-center justify-center p-4">
         <div className=" bg-white rounded-lg shadow-lg w-full max-w-2xl mb-60">
           {user.map(data => (
-            <div onClick={() => navigate("/chat",{state:{data}})} key={data.uid} className="flex items-center justify-between p-4 border-b last:border-b-0">
+            <div onClick={() => navigate("/chat",{state:{data}})} key={data.uid} className="cursor-pointer flex items-center justify-between p-4 border-b last:border-b-0">
               {/* Avatar */}
               <img
                 src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmRQV982vDFH9Mgp4-V4Ffw9x-u0HxxSCeNQ&s"}
