@@ -1,8 +1,9 @@
-import { addDoc, collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../utils/utiles";
 import { data } from "autoprefixer";
 import { useLocation, useNavigate } from "react-router-dom";
+import { addDoc, collection, query, where, onSnapshot } from "firebase/firestore";
+
 
 
 
@@ -20,7 +21,15 @@ function Chat() {
     }, [])
 
     const getMessages = async () => {
-
+        let myUid = await localStorage.getItem("userId")
+        const q = query(collection(db, "chat"), where(state.uid, "==", true), where(myUid, "==", true));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            const cities = [];
+            querySnapshot.forEach((doc) => {
+                cities.push(doc.data().name);
+            });
+            console.log("Current cities in CA: ", cities.join(", "));
+        });
     }
 
     const sendMessage = async () => {
